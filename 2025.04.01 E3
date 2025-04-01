@@ -1,0 +1,148 @@
+import java.util.Scanner;
+public class NumberArray {
+    Scanner x=new Scanner(System.in);
+    
+double[] array;
+int nele;
+int count;
+
+public NumberArray(int count){
+    this.count=count;
+    array=new double[count];
+    nele=0;
+} 
+
+public void insert(double num){
+
+    array[nele]=num;
+    nele++;
+    
+}
+ public void display() {
+ for(int i=0;i<nele;i++){
+     System.out.print(array[i]+"  ");
+
+ }
+     System.out.println("\n");
+ }
+
+ 
+ public void search(double num){
+    int i;
+   for( i=0;i<nele;i++){
+   if(array[i]==num){
+       System.out.println("Index of the specified element("+num+"): "+(i));
+       break;
+   }
+   
+   }
+   if(i==nele){System.out.println("Not found");}
+   /*  System.out.println("Search a value:");
+   boolean found=fase;
+   
+   for( int i=0;i<nele;i++){
+   if(array[i]==num){
+       System.out.println("Index of  "+num+": "+i);
+       found=true;
+       break;
+   }
+   }
+   
+   if(!found){
+    System.out.println(num +" Not found");
+    System.out.println("");
+   }
+   */
+ }
+
+public void AscendingOrder(){
+for(int i=0;i<nele;i++){
+for(int j=i+1;j<nele;j++){
+    if(array[i]>array[j]){
+       double temp=array[i];
+       array[i]=array[j];
+       array[j]=temp;
+
+    }
+    
+}
+}
+    System.out.println("Acending order:");
+    for(int i=0;i<nele;i++){
+        System.out.print(array[i]+" ");
+    }
+
+
+}
+ 
+ public void DeascendingOrder(){
+for(int i=0;i<nele;i++){
+for(int j=i+1;j<nele;j++){
+    if(array[i]<array[j]){
+       double temp=array[i];
+       array[i]=array[j];
+       array[j]=temp;
+
+    }
+    
+}
+}
+    System.out.println("\nDeacending order:");
+    for(int i=0;i<nele;i++){
+        System.out.print(array[i]+" ");
+    }
+
+}
+ 
+
+public void delete(double num){
+int i;
+   for( i=0;i<nele;i++){
+   if(array[i]==num){
+       for(int j=i;j<nele;j++){
+    
+           array[j]=array[j+1];
+                           }
+       
+       break;
+   }
+   
+   }
+    System.out.println("\n"+num +"is deleted");
+   nele--; 
+    for(int k=0;k<nele;k++){
+        System.out.print(array[k]+" ");
+    }
+   
+   
+}
+ 
+ 
+
+    
+}
+
+
+public class TestNumberArray {
+    public static void main(String[] args) {
+       NumberArray arr1=new NumberArray(5);
+       arr1.insert(88);
+       arr1.insert(858); 
+       arr1.insert(886); 
+       arr1.insert(528); 
+        
+       arr1.display();
+       
+       arr1.search(88);
+       arr1.search(528);
+       arr1.search(5288);
+       
+       arr1.AscendingOrder();
+       arr1.DeascendingOrder();
+       
+       arr1.delete(88);
+    }
+    
+    
+    
+}
