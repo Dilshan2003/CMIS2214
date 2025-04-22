@@ -117,11 +117,25 @@ int i;
    
 }
  
- 
+ public void deleteIN(int index){
+
+   if(index<nele){
+       for(int j=index;j<nele-1;j++){
+    
+           array[j]=array[j+1];
+                           }
+       
+       nele--;
+   }
+   System.out.println("\nAfter deleting element of index"+index );
+   for(int k=0;k<nele;k++){
+        System.out.print(array[k]+" ");
+   }
+    
 
     
 }
-
+}
 
 public class TestNumberArray {
     public static void main(String[] args) {
@@ -141,6 +155,7 @@ public class TestNumberArray {
        arr1.DeascendingOrder();
        
        arr1.delete(88);
+       arr1.deleteIN(0);
     }
     
     
