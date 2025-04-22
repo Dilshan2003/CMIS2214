@@ -1,0 +1,77 @@
+public class OrderedArray {
+    
+    double[] array;
+    int nele;
+    
+   public OrderedArray(int count){
+   
+    array=new double[count];
+    nele=0;
+}  
+    
+   public void insert(double value){
+       int i;
+for(i=0;i<nele;i++){
+if(array[i]>value){
+break;
+}
+}
+  for(int j=nele;j>i;j--)  {
+  array[j]=array[j-1];
+  }
+    array[i]=value;
+    nele++;
+}
+   
+   public void display() {
+ for(int i=0;i<nele;i++){
+     System.out.print(array[i]+"  ");
+
+ }
+     System.out.println("\n");
+ }
+   
+   public boolean find(double searchKey) {
+int lowerBound = 0;
+int upperBound = nele - 1;
+int curIn;
+while (true) {
+curIn = (lowerBound + upperBound) / 2;
+if (array[curIn] == searchKey) {
+return true; // found it
+} else if (lowerBound > upperBound) {
+return false; // can't find it
+} else { // start dividing the range
+if (array[curIn] < searchKey) {
+lowerBound = curIn + 1; // it is in upper half
+} else {
+upperBound = curIn - 1; // it is in lower half
+}
+} 
+} 
+} 
+   
+   
+    
+}
+
+
+
+public class TestOrderedArray {
+    
+    public static void main(String[] args) {
+        
+        OrderedArray arr1=new OrderedArray(10);
+        arr1.insert(52);
+        arr1.insert(5);
+        arr1.insert(25);
+        arr1.insert(63);
+        
+        arr1.display();
+        System.out.println(arr1.find(63));
+        
+    }
+    
+    
+    
+}
