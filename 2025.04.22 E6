@@ -1,0 +1,159 @@
+public class Node {
+    
+    
+   int iData;
+   Node next;
+   
+   public Node(int data){
+   iData=data;
+   next=null;
+   }
+    
+   public void DisplayNode(){
+       System.out.print("{"+iData+"}");
+   }
+   
+}
+
+
+
+public class DoubleEndedLinkedList {
+    
+    Node first;
+    Node last;
+     public void DoubleEndedLinkedList(){
+     first=null;
+     last=null;
+     }
+    
+     
+     public boolean isEmpty(){
+     return(first==null);
+     }
+     
+     public void InsertFirst(int data){
+     Node newNode=new Node(data);
+     if(isEmpty()){
+     last=newNode;
+     }
+     newNode.next=first;
+     first=newNode;
+     
+     }
+     
+     
+     
+     public void Insertlast(int data){
+     Node newNode=new Node(data);
+     if(isEmpty()){
+     first=newNode;
+     }
+     last.next=newNode;
+     last=newNode;
+     }
+     
+     public void InsertAfter(int data,int afterkey){
+     Node newNode = new Node(data);
+     Node currentNode=first;
+     while(currentNode!=last){
+     if(currentNode.iData!=afterkey){
+     currentNode=currentNode.next;
+     }
+     else{break;}
+     }
+     newNode.next=currentNode.next;
+     currentNode.next=newNode;
+     }
+     
+     
+     public Node deleteFirst(){
+     if(isEmpty()){
+         return null;
+     }
+     Node temp=first;
+     if(first.next==null){
+     last=null;
+     }
+     first=first.next;
+     return temp;
+     }
+     
+     public Node deleteLast(){
+     if(isEmpty()){
+         return null;
+     }
+     Node temp=last;
+     if(first==null){
+     first=last=null;
+     }
+     else{
+         Node currentNode=first;
+         while(currentNode.next!=last){
+         currentNode=currentNode.next;
+          }
+         last=currentNode;
+         currentNode.next=null;
+         }
+         return temp;
+     }
+
+public void Deletemiddle(int data){
+     Node currentNode=first;
+     Node previousNode=first;
+     while(currentNode!=last){
+     if(currentNode.iData!=data){
+     previousNode=currentNode;
+     currentNode=currentNode.next;
+     }
+     else{
+         break;
+     }}
+     previousNode.next=currentNode.next;
+     }
+
+
+     
+     public void DisplayList(){
+         System.out.print("List");
+         Node currentNode=first;
+         
+         while(currentNode!=null){
+         currentNode.DisplayNode();
+         currentNode=currentNode.next;
+         }
+         System.out.println("");
+     }
+}
+
+
+
+public class Main {
+    public static void main(String[] args) {
+       DoubleEndedLinkedList list=new DoubleEndedLinkedList();
+       
+       list.InsertFirst(30);
+       list.InsertFirst(20);
+       list.InsertFirst(10);
+       list.DisplayList();
+       
+       
+       list.Insertlast(50);
+       list.DisplayList();
+       
+       list.InsertAfter(33, 20);
+       list.DisplayList();
+       
+       list.deleteFirst();
+       list.DisplayList();
+       
+       list.deleteLast();
+       list.DisplayList();
+
+       list.Deletemiddle(33);
+       list.DisplayList();
+    }
+    
+    
+    
+}
+
