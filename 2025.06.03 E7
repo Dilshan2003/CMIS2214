@@ -1,0 +1,111 @@
+public class DoublyNode {
+    int iData;
+    public DoublyNode previous;
+    public DoublyNode next;
+    
+    public DoublyNode(int data){
+    iData=data;
+    next=previous=null;
+    }
+    public DoublyNode(int data,DoublyNode previousNode,DoublyNode nextNode){
+    iData=data;
+    previous=previousNode;
+    next=nextNode;
+    
+    }
+    
+    public int getData(){  //get data items
+    return iData;
+    }
+    
+    public DoublyNode getPrevious(){  //get previous node
+    return previous;
+    }
+    
+    public DoublyNode getNext(){  //get next node
+    return next;
+    }
+    
+    
+    
+}
+
+
+
+
+public class DoublyLinkedList {
+    DoublyNode head; //ref to first node
+    DoublyNode tail; //ref to last  node
+    
+    public DoublyLinkedList(){
+    head=tail=null;  //no items yet
+    }
+    
+    public boolean IsEmpty(){
+    return head==null;  //true if the list is empty
+    }
+    
+    public void AddtoHead(int data){
+       if(IsEmpty()){
+         head=tail=new DoublyNode(data);
+                    }
+       else{
+         head=head.previous=new DoublyNode(data,null,head);
+                    }
+    }
+    
+    
+    public void AddtoTail(int data){
+       if(IsEmpty()){
+         head=tail=new DoublyNode(data);
+                    }
+       else{
+         tail=tail.next=new DoublyNode(data,tail,null);
+                    }
+    }
+    
+    public void PrintHtoT(){
+        System.out.println("Head to Tail");
+        DoublyNode current=head;
+        while(current!=null){
+            System.out.print(current.iData+" ");
+            current=current.next;  //move too the next node
+        }
+        System.out.println("");
+    }
+    
+    
+     public void PrintTtoH(){
+        System.out.println("Tail to Head");
+        DoublyNode current=tail;
+        while(current!=null){
+            System.out.print(current.iData+" ");
+            current=current.previous;  //move too the next node
+        }
+        System.out.println("");
+    }
+    
+    
+}
+
+
+
+
+
+public class Main {
+    public static void main(String[] args) {
+        
+        DoublyLinkedList list=new DoublyLinkedList();
+        
+        list.AddtoHead(22);
+        list.AddtoHead(23);
+        list.AddtoHead(24);
+        
+        list.AddtoTail(55);
+        list.AddtoTail(56);
+        list.AddtoTail(57);
+        
+        list.PrintHtoT();
+        list.PrintTtoH();
+    }
+}
