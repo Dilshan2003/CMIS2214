@@ -1,0 +1,117 @@
+public class Queue {
+    
+    int maxsize;
+    int[] queueArr;
+    int front;
+    int rear;
+    int nEle;
+    
+    public Queue(int max){
+    maxsize=max;
+    queueArr=new int[maxsize];
+    
+    front=0;
+    rear=-1;
+    nEle=0;
+    
+    }
+    
+    public boolean IsEmpty(){
+    return (rear== -1);
+    }
+    
+     public boolean IsFull(){
+        return (rear==maxsize-1);
+    }
+    
+    public void Enqueue(int data){
+    if(IsFull()){
+        System.out.println("Queue is full. cannot enqueue "+data);
+        return;
+    }
+    
+        System.out.println("Enqueued:  "+ data);
+        queueArr[++rear]=data;
+        nEle++;
+    
+    } 
+     
+    
+     public int Dequeue(){
+    
+      if(IsEmpty()){
+        System.out.println("Queue is Empty. cannot Dequeue ");
+        return -1;
+       }
+    
+       System.out.println("Dequeued "+queueArr[front]);
+       nEle--;
+       return queueArr[front++];
+       
+       
+    
+    }
+    
+    
+     
+     
+      public void print(){
+    if(IsEmpty()){
+        System.out.println("Empty Queue");
+    }
+    
+        System.out.println("Queue elements from front to rear");
+   
+    for(int a=front;a<maxsize;a++){
+        System.out.print("{"+queueArr[a]+"} ");
+    
+    }
+        System.out.println("");
+    }
+    
+    
+       public int peek(){
+       if(IsEmpty()){
+        System.out.println("Empty Queue");
+        return -1;
+        } 
+        System.out.println("Peek front: "+queueArr[front]);
+       return queueArr[front];
+       
+      
+       
+    }
+       
+      public void size(){
+           System.out.println("Size of queue: "+nEle);
+       }
+      
+      
+}
+
+
+
+
+public class Main {
+    
+    public static void main(String[] args) {
+      Queue q1=new Queue(5); 
+      
+      q1.Enqueue(1);
+      q1.Enqueue(2);
+      q1.Enqueue(3);
+      q1.Enqueue(4);
+      q1.Enqueue(5);
+       
+      q1.print();
+      
+      q1.Dequeue();
+       
+      q1.Enqueue(6);
+      q1.peek();
+      q1.size();
+        
+    }
+    
+    
+}
