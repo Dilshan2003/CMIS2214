@@ -1,0 +1,172 @@
+public class binaryNode {
+    int data;
+    binaryNode left;
+    binaryNode right;
+    
+    public binaryNode(int data){
+    
+    this.data=data;
+    left=right=null;
+    
+    }
+    
+    public int getData(){
+    return data;
+    }
+    
+}
+
+
+public class binaryTree {
+    public binaryNode root;
+    
+    public binaryTree(){
+    root=null;
+    
+    }
+    
+    public boolean isEmpty(){
+    
+    return root==null;
+    }
+    
+    
+    // Non recursive
+    
+   public void insert(int data){
+   binaryNode newNode= new binaryNode(data);
+   
+      if(root==null){
+      root=newNode;
+      }
+      else{
+      binaryNode current=root;
+      binaryNode parent;
+      
+      while(true){
+      parent=current;
+      
+      if(data<current.data){
+      current=current.left;
+         if(current==null){
+         parent.left=newNode;
+         return;
+         }
+      
+      }
+      
+      else{
+      
+      current=current.right;
+        if(current==null){
+        parent.right=newNode;
+         return;       
+                         }
+      
+          }
+       
+      }}}
+      
+      //Insertion (Recursive)
+    
+    public void insertRecursive(int d){
+       root=insertSubtree(root,d);
+   
+      }
+    
+    private binaryNode insertSubtree(binaryNode t,int d){
+      if(t==null){
+       t=new binaryNode(d);
+      }
+      else if(d<t.getData()){
+       t.left= insertSubtree(t.left,d);
+      }
+      
+      else if(d>t.getData()){
+       t.right= insertSubtree(t.right,d);
+      }
+      return t;
+      }
+    
+    
+    public void preorder(binaryNode localroot){
+      if(localroot!=null){
+          System.out.print(localroot.data+" ");
+          preorder(localroot.left);
+        preorder(localroot.right);
+      }
+    
+    
+   
+      
+      
+      
+    }
+    
+    public void inOrder(binaryNode localroot){
+       if(localroot!=null){
+          
+          inOrder(localroot.left);
+          System.out.print(localroot.data+" ");
+         inOrder(localroot.right);
+      }
+    
+    
+}
+    
+    public void postOrder(binaryNode localroot){
+       if(localroot!=null){
+          
+          postOrder(localroot.left);
+          
+         postOrder(localroot.right);
+         System.out.print(localroot.data+" ");
+      }
+    
+       
+}
+    
+    
+    
+    
+    
+    
+}
+
+
+
+
+
+public class Main {
+    
+    public static void main(String[] args) {
+        binaryTree b=new binaryTree();
+        
+        b.insert(4);
+        b.insert(2);
+        b.insert(1);
+        b.insert(3);
+        b.insert(12);
+        b.insert(6);
+        b.insert(32);
+        b.insert(22);
+        b.insert(43);
+        b.insert(54);
+        
+        System.out.println("Preorder");
+        b.preorder(b.root);
+        System.out.println("");
+        
+        System.out.println("Inorder");
+        b.inOrder(b.root);
+        System.out.println("");
+        
+        
+        System.out.println("Postorder");
+        b.postOrder(b.root);
+        System.out.println("");
+    }
+    
+    
+    
+}
