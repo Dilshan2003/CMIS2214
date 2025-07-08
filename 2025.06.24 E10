@@ -126,9 +126,81 @@ public class binaryTree {
        
 }
     
+   public void search(int x){
+     binaryNode current=root;
+     
+     while(current!=null){
+        if(x==current.data){
+            System.out.println("Found: "+current.data);
+            return;
+        }
+     
+        else if(x<current.data){
+        current =current.left;
+        }
+        else{
+        current=current.right;
+        }
+        
+     }
+        System.out.println("Not Found "+x);
     
+    } 
     
+//delete
+public binaryNode FindMin(binaryNode t){
+    if(t==null)
+        return null;
+    else if(t.left==null)
+        return t;
+    else{
+    return FindMin(t.left);
+    }
     
+    }
+          
+   public binaryNode DeleteSubTree(binaryNode t,int x){
+     if(t==null)
+         return null;
+     if(x<t.data)
+         t.left=DeleteSubTree(t.left,x);
+     else if(x>t.data)
+         t.right=DeleteSubTree(t.right,x);
+     else{//Found to node delete
+       if(t.left==null)
+           return t.right;
+       
+       else if(t.right==null)
+           return t.left;
+       
+       else{
+           binaryNode successor=FindMin(t.right);
+           t.data=successor.data;
+           t.right=DeleteSubTree(t.right,successor.data);
+           }
+     }
+         
+   return t;
+   
+   } 
+
+
+public void Delete(int x) {
+      root=DeleteSubTree(root,x);
+    }
+
+ public int Height(binaryNode t){
+   if(t==null)
+       return -1;
+   
+   int leftHeight=Height(t.left);
+   int rightHeight=Height(t.right);
+   
+   return Math.max(leftHeight,rightHeight)+1;
+   
+      }
+   
+
     
     
 }
@@ -165,6 +237,15 @@ public class Main {
         System.out.println("Postorder");
         b.postOrder(b.root);
         System.out.println("");
+
+        b.search(22);
+        b.search(23);
+
+        b.Delete(12);
+        b.inOrder(b.root);
+
+        System.out.println("Height of the tree: "+b.Height(b.root));
+
     }
     
     
